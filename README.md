@@ -16,3 +16,7 @@ Open `index.html` directly in any web browser — no build step or server requir
 - **Shop** — grid of 6 bouquets with prices and "Add to Cart" buttons
 - **About** — shop story/description
 - **Contact** — a simple contact form
+
+## Deployment
+
+Live at https://bloom-and-petal-lyart.vercel.app, deployed via Vercel.
