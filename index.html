@@ -1,0 +1,338 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Bloom & Petal — Flower Shop</title>
+<style>
+  :root {
+    --pink: #e8879e;
+    --pink-dark: #c96b83;
+    --cream: #fdf6f0;
+    --green: #6b8f71;
+    --text: #3a2e2e;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    font-family: 'Georgia', 'Times New Roman', serif;
+    background: var(--cream);
+    color: var(--text);
+    line-height: 1.6;
+  }
+  a { text-decoration: none; color: inherit; }
+
+  /* Header */
+  header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 6%;
+    background: var(--cream);
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+  }
+  .logo {
+    font-size: 1.8rem;
+    font-weight: bold;
+    color: var(--pink-dark);
+    letter-spacing: 1px;
+  }
+  nav ul {
+    list-style: none;
+    display: flex;
+    gap: 32px;
+  }
+  nav a {
+    font-size: 1rem;
+    transition: color 0.2s;
+  }
+  nav a:hover { color: var(--pink-dark); }
+
+  /* Hero */
+  .hero {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 80px 6%;
+    background: linear-gradient(135deg, #fdf6f0 0%, #fbe4ea 100%);
+    flex-wrap: wrap;
+    gap: 40px;
+  }
+  .hero-text { max-width: 520px; }
+  .hero-text h1 {
+    font-size: 3rem;
+    color: var(--pink-dark);
+    margin-bottom: 20px;
+  }
+  .hero-text p {
+    font-size: 1.15rem;
+    margin-bottom: 28px;
+    color: #5a4a4a;
+  }
+  .btn {
+    display: inline-block;
+    background: var(--pink-dark);
+    color: white;
+    padding: 14px 32px;
+    border-radius: 30px;
+    font-size: 1rem;
+    cursor: pointer;
+    border: none;
+    transition: background 0.2s, transform 0.2s;
+  }
+  .btn:hover {
+    background: var(--pink);
+    transform: translateY(-2px);
+  }
+  .hero-image {
+    font-size: 12rem;
+    line-height: 1;
+    animation: sway 4s ease-in-out infinite;
+  }
+  @keyframes sway {
+    0%, 100% { transform: rotate(-3deg); }
+    50% { transform: rotate(3deg); }
+  }
+
+  /* Section titles */
+  .section-title {
+    text-align: center;
+    margin-bottom: 50px;
+  }
+  .section-title h2 {
+    font-size: 2.2rem;
+    color: var(--pink-dark);
+  }
+  .section-title p {
+    color: #7a6a6a;
+    margin-top: 8px;
+  }
+
+  /* Products */
+  .products {
+    padding: 80px 6%;
+  }
+  .product-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 32px;
+  }
+  .product-card {
+    background: white;
+    border-radius: 16px;
+    overflow: hidden;
+    box-shadow: 0 4px 16px rgba(0,0,0,0.06);
+    transition: transform 0.25s, box-shadow 0.25s;
+    text-align: center;
+    padding-bottom: 20px;
+  }
+  .product-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 12px 24px rgba(0,0,0,0.1);
+  }
+  .product-image {
+    background: #fbe4ea;
+    font-size: 5rem;
+    padding: 40px 0;
+  }
+  .product-card h3 {
+    margin: 16px 0 6px;
+    color: var(--text);
+  }
+  .product-card .price {
+    color: var(--pink-dark);
+    font-weight: bold;
+    font-size: 1.2rem;
+    margin-bottom: 14px;
+  }
+  .product-card button {
+    background: var(--green);
+    color: white;
+    border: none;
+    padding: 10px 24px;
+    border-radius: 20px;
+    cursor: pointer;
+    font-size: 0.95rem;
+    transition: background 0.2s;
+  }
+  .product-card button:hover { background: #587a5e; }
+
+  /* About */
+  .about {
+    background: white;
+    padding: 80px 6%;
+    display: flex;
+    align-items: center;
+    gap: 60px;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+  .about-image {
+    font-size: 10rem;
+  }
+  .about-text {
+    max-width: 500px;
+  }
+  .about-text h2 {
+    font-size: 2rem;
+    color: var(--pink-dark);
+    margin-bottom: 18px;
+  }
+  .about-text p { color: #5a4a4a; margin-bottom: 14px; }
+
+  /* Contact */
+  .contact {
+    padding: 80px 6%;
+    background: var(--cream);
+    text-align: center;
+  }
+  .contact form {
+    max-width: 500px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+  }
+  .contact input, .contact textarea {
+    padding: 14px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    font-family: inherit;
+    font-size: 1rem;
+  }
+  .contact textarea { resize: vertical; min-height: 100px; }
+
+  /* Footer */
+  footer {
+    background: var(--pink-dark);
+    color: white;
+    text-align: center;
+    padding: 30px 6%;
+  }
+  footer p { opacity: 0.9; }
+
+  #form-msg {
+    color: var(--green);
+    font-weight: bold;
+    display: none;
+  }
+
+  @media (max-width: 600px) {
+    header { flex-direction: column; gap: 16px; }
+    nav ul { gap: 18px; flex-wrap: wrap; justify-content: center; }
+    .hero { text-align: center; justify-content: center; }
+    .hero-text h1 { font-size: 2.2rem; }
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="logo">🌸 Bloom & Petal</div>
+  <nav>
+    <ul>
+      <li><a href="#home">Home</a></li>
+      <li><a href="#shop">Shop</a></li>
+      <li><a href="#about">About</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+  </nav>
+</header>
+
+<section class="hero" id="home">
+  <div class="hero-text">
+    <h1>Fresh Flowers, Delivered with Love</h1>
+    <p>Hand-tied bouquets and arrangements crafted daily from the freshest seasonal blooms. Perfect for every occasion — or no occasion at all.</p>
+    <a href="#shop" class="btn">Shop Bouquets</a>
+  </div>
+  <div class="hero-image">💐</div>
+</section>
+
+<section class="products" id="shop">
+  <div class="section-title">
+    <h2>Our Bouquets</h2>
+    <p>Freshly picked, freshly arranged</p>
+  </div>
+  <div class="product-grid">
+    <div class="product-card">
+      <div class="product-image">🌹</div>
+      <h3>Rose Romance</h3>
+      <div class="price">$45.00</div>
+      <button onclick="addToCart('Rose Romance')">Add to Cart</button>
+    </div>
+    <div class="product-card">
+      <div class="product-image">🌻</div>
+      <h3>Sunny Sunflowers</h3>
+      <div class="price">$32.00</div>
+      <button onclick="addToCart('Sunny Sunflowers')">Add to Cart</button>
+    </div>
+    <div class="product-card">
+      <div class="product-image">🌷</div>
+      <h3>Tulip Delight</h3>
+      <div class="price">$28.00</div>
+      <button onclick="addToCart('Tulip Delight')">Add to Cart</button>
+    </div>
+    <div class="product-card">
+      <div class="product-image">🌼</div>
+      <h3>Daisy Dream</h3>
+      <div class="price">$25.00</div>
+      <button onclick="addToCart('Daisy Dream')">Add to Cart</button>
+    </div>
+    <div class="product-card">
+      <div class="product-image">💐</div>
+      <h3>Mixed Garden Bunch</h3>
+      <div class="price">$52.00</div>
+      <button onclick="addToCart('Mixed Garden Bunch')">Add to Cart</button>
+    </div>
+    <div class="product-card">
+      <div class="product-image">🪷</div>
+      <h3>Lotus Serenity</h3>
+      <div class="price">$38.00</div>
+      <button onclick="addToCart('Lotus Serenity')">Add to Cart</button>
+    </div>
+  </div>
+</section>
+
+<section class="about" id="about">
+  <div class="about-image">🌺</div>
+  <div class="about-text">
+    <h2>About Bloom & Petal</h2>
+    <p>For over a decade, Bloom & Petal has been the neighborhood's favorite flower shop, sourcing blooms directly from local growers to bring you the freshest arrangements possible.</p>
+    <p>Every bouquet is hand-tied by our florists with care and creativity, making each order a little piece of art delivered right to your door.</p>
+  </div>
+</section>
+
+<section class="contact" id="contact">
+  <div class="section-title">
+    <h2>Get in Touch</h2>
+    <p>Questions, custom orders, or just want to say hi?</p>
+  </div>
+  <form onsubmit="submitForm(event)">
+    <input type="text" placeholder="Your Name" required>
+    <input type="email" placeholder="Your Email" required>
+    <textarea placeholder="Your Message" required></textarea>
+    <button type="submit" class="btn">Send Message</button>
+    <p id="form-msg">Thanks! We'll get back to you soon. 🌸</p>
+  </form>
+</section>
+
+<footer>
+  <p>&copy; 2026 Bloom & Petal Flower Shop. All rights reserved.</p>
+  <p>123 Garden Lane, Blossom City | (555) 123-4567</p>
+</footer>
+
+<script>
+  function addToCart(name) {
+    alert(name + " added to your cart! 🌸");
+  }
+  function submitForm(e) {
+    e.preventDefault();
+    document.getElementById('form-msg').style.display = 'block';
+    e.target.reset();
+  }
+</script>
+
+</body>
+</html>
