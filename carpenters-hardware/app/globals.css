@@ -1,0 +1,26 @@
+@import "tailwindcss";
+
+:root {
+  --color-charcoal: #1a1a1a;
+  --color-steel: #3a3f44;
+  --color-amber: #f5a623;
+  --color-rust: #c1502e;
+  --color-concrete: #f4f1ec;
+  --color-success: #2e7d32;
+}
+
+@theme inline {
+  --color-charcoal: var(--color-charcoal);
+  --color-steel: var(--color-steel);
+  --color-amber: var(--color-amber);
+  --color-rust: var(--color-rust);
+  --color-concrete: var(--color-concrete);
+  --color-success: var(--color-success);
+  --font-heading: var(--font-oswald);
+  --font-sans: var(--font-inter);
+}
+
+body {
+  background: var(--color-concrete);
+  color: var(--color-charcoal);
+}
